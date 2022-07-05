@@ -11,7 +11,7 @@ public class App {
                 "In front of you is a fork in the road leading to two caves. A storm is approaching so you hastily choose a path.\n Type left or right");
 
         do {
-            choice = input.nextLine();d
+            choice = input.nextLine();
 
 
             switch (choice) {
