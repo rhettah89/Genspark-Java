@@ -13,9 +13,10 @@ public class App {
         do {
             choice = input.nextLine();
 
+
             switch (choice) {
                 case "left":
-                    result = "You come upon a friendly looking dragon. It offers you roast pig and shows you a pile of maps";
+                    result = "You come upon a friendly looking dragon. It offers you roast pig and shows you a pile of maps"; 
 
                     break;
 
