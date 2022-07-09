@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class App {
-
     public static String guessNumber(){
         Scanner input = new Scanner(System.in);
         boolean intValidate = false;
