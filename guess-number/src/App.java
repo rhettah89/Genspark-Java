@@ -8,7 +8,7 @@ public class App {
         int randomNum = ThreadLocalRandom.current().nextInt(1, 500 + 1);
         String response = "";
 
-        System.out.println("GUESS A NUMBER BETWEEN 1 AND 355");
+        System.out.println("GUESS A NUMBER BETWEEN 1 AND 500");
         String guess = input.nextLine();
 
         do{
@@ -17,10 +17,10 @@ public class App {
 
            do{
                if (Integer.parseInt(guess) < randomNum) {
-                   response = "TOO LOW!\nGUESS A NUMBER BETWEEN 1 AND 355";
+                   response = "TOO LOW!\nGUESS A NUMBER BETWEEN 1 AND 500";
 
                } else if(Integer.parseInt(guess) > randomNum) {
-                   response = "TOO HIGH!\nGUESS A NUMBER BETWEEN 1 AND 355";
+                   response = "TOO HIGH!\nGUESS A NUMBER BETWEEN 1 AND 500";
 
                }
 
@@ -49,7 +49,6 @@ public class App {
         if(Integer.parseInt(guess) == randomNum){
             response = "That's It!";
         }
-
         return response;
     }
     public static void main(String[] args) {
