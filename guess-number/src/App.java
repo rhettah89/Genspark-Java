@@ -13,9 +13,9 @@ public class App {
 
         do{
             try {
-            Integer.parseInt(guess);
+           int i = Integer.parseInt(guess);
 
-           intValidate = true;
+
 
            do{
                if (Integer.parseInt(guess) < randomNum) {
@@ -25,13 +25,23 @@ public class App {
                    response = "TOO HIGH!\nGUESS A NUMBER BETWEEN 1 AND 355S";
 
                }
-               System.out.println(response);
+
+              System.out.println(response);
                guess = input.nextLine();
+
+              try {
+                  i = Integer.parseInt(guess);
+                  intValidate = true;
+              }catch(NumberFormatException e) {
+                  System.out.println("NOT A VALID ENTRY, GUESS A NUMBER");
+                  guess = input.nextLine();
+
+              }
+
+
            }
            while(
                    Integer.parseInt(guess)  != randomNum);
-
-
 
             } catch (NumberFormatException e) {
             System.out.println("NOT A VALID ENTRY, GUESS A NUMBER");
@@ -40,16 +50,19 @@ public class App {
         }
         while(!intValidate);
 
+        if(Integer.parseInt(guess) == randomNum){
+            response = "That's It!";
+        }
+
         return response;
 
 
     }
 
-//    public static void main(String[] args) {
-//
-//        System.out.println("GUESS A NUMBER BETWEEN 1 AND 355");
-//
-//        System.out.println(guessNumber());
-//
-//    }
+    public static void main(String[] args) {
+
+
+        System.out.println(guessNumber());
+
+    }
 }
