@@ -20,7 +20,7 @@ public class App {
                    response = "TOO LOW!\nGUESS A NUMBER BETWEEN 1 AND 355";
 
                } else if(Integer.parseInt(guess) > randomNum) {
-                   response = "TOO HIGH!\nGUESS A NUMBER BETWEEN 1 AND 355S";
+                   response = "TOO HIGH!\nGUESS A NUMBER BETWEEN 1 AND 355";
 
                }
 
