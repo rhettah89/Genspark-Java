@@ -15,8 +15,6 @@ public class App {
             try {
            int i = Integer.parseInt(guess);
 
-
-
            do{
                if (Integer.parseInt(guess) < randomNum) {
                    response = "TOO LOW!\nGUESS A NUMBER BETWEEN 1 AND 355";
@@ -37,8 +35,6 @@ public class App {
                   guess = input.nextLine();
 
               }
-
-
            }
            while(
                    Integer.parseInt(guess)  != randomNum);
@@ -55,14 +51,9 @@ public class App {
         }
 
         return response;
-
-
     }
-
     public static void main(String[] args) {
 
-
         System.out.println(guessNumber());
-
     }
 }
