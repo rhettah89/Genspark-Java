@@ -3,55 +3,54 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class App {
 
-    public static String result(String guess, int randomNum, Scanner input){
+    public static String guessNumber(){
+        Scanner input = new Scanner(System.in);
+        boolean intValidate = false;
+        int randomNum = ThreadLocalRandom.current().nextInt(1, 500 + 1);
         String response = "";
 
-        while (Integer.parseInt(guess) != randomNum) {
-
-            if (Integer.parseInt(guess) < randomNum) {
-                response = "TOO LOW!\nGUESS A NUMBER BETWEEN 1 AND 355 \n ENTER YOUR GUESS";
-
-
-            } else if(Integer.parseInt(guess) > randomNum) {
-                response = "TOO HIGH!\nGUESS A NUMBER BETWEEN 1 AND 355 \n ENTER YOUR GUESS";
-
-
-            }
-            guess = input.nextLine();
-        }
-
-        System.out.println("THAT'S IT! YOU WIN");
-
-        return response;
-    }
-
-
-    public static void guessNumber(int randomNum, Scanner input){
+        System.out.println("GUESS A NUMBER BETWEEN 1 AND 355");
         String guess = input.nextLine();
 
-        try {
+        do{
+            try {
             Integer.parseInt(guess);
-            result( guess,  randomNum, input);
 
-        } catch (NumberFormatException e) {
+           intValidate = true;
+
+           do{
+               if (Integer.parseInt(guess) < randomNum) {
+                   response = "TOO LOW!\nGUESS A NUMBER BETWEEN 1 AND 355";
+
+               } else if(Integer.parseInt(guess) > randomNum) {
+                   response = "TOO HIGH!\nGUESS A NUMBER BETWEEN 1 AND 355S";
+
+               }
+               System.out.println(response);
+               guess = input.nextLine();
+           }
+           while(
+                   Integer.parseInt(guess)  != randomNum);
+
+
+
+            } catch (NumberFormatException e) {
             System.out.println("NOT A VALID ENTRY, GUESS A NUMBER");
             guess = input.nextLine();
-
-             result( guess,  randomNum, input);
+            }
         }
+        while(!intValidate);
 
-        System.out.println();
+        return response;
 
-    }
-
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-        int randomNum = ThreadLocalRandom.current().nextInt(1, 500 + 1);
-
-        System.out.println("GUESS A NUMBER BETWEEN 1 AND 355 \n ENTER YOUR GUESS");
-
-        guessNumber(randomNum, input);
 
     }
+
+//    public static void main(String[] args) {
+//
+//        System.out.println("GUESS A NUMBER BETWEEN 1 AND 355");
+//
+//        System.out.println(guessNumber());
+//
+//    }
 }
