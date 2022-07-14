@@ -1,3 +1,5 @@
+package java;
+
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -51,8 +53,8 @@ public class App {
         }
         return response;
     }
-    public static void main(String[] args) {
-
-        System.out.println(guessNumber());
-    }
+//    public static void main(String[] args) {
+//
+//        System.out.println(guessNumber());
+//    }
 }
