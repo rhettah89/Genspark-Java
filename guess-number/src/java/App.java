@@ -1,4 +1,3 @@
-package java;
 
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -12,7 +11,6 @@ public class App {
 
         System.out.println("GUESS A NUMBER BETWEEN 1 AND 500");
         String guess = input.nextLine();
-
         do{
             try {
            int i = Integer.parseInt(guess);
@@ -53,8 +51,8 @@ public class App {
         }
         return response;
     }
-//    public static void main(String[] args) {
-//
-//        System.out.println(guessNumber());
-//    }
+    public static void main(String[] args) {
+
+        System.out.println(guessNumber());
+    }
 }
