@@ -1,54 +1,61 @@
 import java.io.*;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Main {
     public static final int DEFAULT_BUFFER_SIZE = 8192;
 
-    public String wordView(int l, String guess, String randomWord ){
-        List<String> word_view = new ArrayList<>();
+    public static String wordView(String guess, String randomWord ){
+        List<String> letters = new ArrayList<>();
+        String word = "";
+
+            for(int i = 0; i < randomWord.length(); i++){
+                letters.add("_");
+                }
 
 
-
-        for(int i = 0; i < l; i++){
-            if(randomWord.contains(guess)){
-                word_view.add( randomWord.indexOf("guess", 1), guess);
-               }else{ word_view.add("_");}
-
-     }
-
-        return "";
+        if(randomWord.contains(guess)){
+            letters.set(randomWord.indexOf(guess), guess);
+        }
+        for(String letter : letters){
+            word = (word + letter);
+        }
 
 
-
-
+        System.out.println(word);
+        return word;
     }
-
-
-
-
-
 
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
-        String randomWord = "";
-        System.out.println("\n\nWELCOME TO HANGMAN\n\n\"+{word_view}+\"\n    |\n    |\n    |\n   ===\n\nMissed letters:\n\nGuess a letter");
-        URI uri = URI.create("https://random-word-api.herokuapp.com/word");
-        try (InputStream inputStream = uri.toURL().openStream()) {
-            // Convert InputStream -> String
-            String result = convertInputStreamToString(inputStream);
-            randomWord = result.replace("\"", "").replace("[", "").replace("]", "");
+        String randomWord = "DICK";
+        String guess = "I";
+        String word = wordView(guess, randomWord);
 
-            System.out.println( result.replace("\"", "").replace("[", "").replace("]", ""));
-        }
-
-        String guess = input.nextLine();
+        System.out.println(word);
 
 
 
+
+
+
+
+       System.out.println("\n\nWELCOME TO HANGMAN\n\n" + "+" + word + "+" + "\n    |\n    |\n    |\n   ===\n\nMissed letters:\n\nGuess a letter");
+//        URI uri = URI.create("https://random-word-api.herokuapp.com/word");
+//        try (InputStream inputStream = uri.toURL().openStream()) {
+//            String result = convertInputStreamToString(inputStream);
+//            randomWord = result.replace("\"", "").replace("[", "").replace("]", "");
+//
+//            System.out.println( result.replace("\"", "").replace("[", "").replace("]", ""));
+//        }
+//
+//        while()
+//
+//         guess = input.nextLine();
+//
+//
+//        System.out.println("\n\nWELCOME TO HANGMAN\n\n" + wordView(guess,randomWord) + "+" + "\n    |\n    |\n    |\n   ===\n\nMissed letters:\n\nGuess a letter");
 
     }
 
