@@ -29,34 +29,36 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
-        String randomWord = "DICK";
-        String guess = "I";
+        String randomWord = "";
+        String guess = " ";
+        boolean completed = false;
         String word = wordView(guess, randomWord);
 
         System.out.println(word);
 
+        URI uri = URI.create("https://random-word-api.herokuapp.com/word");
+        try (InputStream inputStream = uri.toURL().openStream()) {
+            String result = convertInputStreamToString(inputStream);
+            randomWord = result.replace("\"", "").replace("[", "").replace("]", "");
 
+            System.out.println( result.replace("\"", "").replace("[", "").replace("]", ""));
+        }
 
-
-
-
-
-       System.out.println("\n\nWELCOME TO HANGMAN\n\n" + "+" + word + "+" + "\n    |\n    |\n    |\n   ===\n\nMissed letters:\n\nGuess a letter");
-//        URI uri = URI.create("https://random-word-api.herokuapp.com/word");
-//        try (InputStream inputStream = uri.toURL().openStream()) {
-//            String result = convertInputStreamToString(inputStream);
-//            randomWord = result.replace("\"", "").replace("[", "").replace("]", "");
-//
-//            System.out.println( result.replace("\"", "").replace("[", "").replace("]", ""));
-//        }
-//
-//        while()
-//
+        String space = "";
+        String board = "";
+        for(int i = 0; i < randomWord.length(); i++ ){
+            space = space + " ";
+            board = board + "=";
+        }
+        // Game Start
 //         guess = input.nextLine();
-//
-//
-//        System.out.println("\n\nWELCOME TO HANGMAN\n\n" + wordView(guess,randomWord) + "+" + "\n    |\n    |\n    |\n   ===\n\nMissed letters:\n\nGuess a letter");
-
+        System.out.println("\n\nWELCOME TO HANGMAN\n" + "+" + wordView(guess,randomWord) + "+");
+        System.out.println(space+ "|\n"  + space+ "|\n"  +  space+ "|\n" + " " + board+"\n\nMissed letters:\n\nGuess a letter");
+        while(!completed){
+            guess = input.nextLine();
+            System.out.println("\n\nWELCOME TO HANGMAN\n" + "+" + wordView(guess,randomWord) + "+");
+            System.out.println(space+ "|\n"  + space+ "|\n"  +  space+ "|\n" + " " + board+"\n\nMissed letters:\n\nGuess a letter");
+        }
     }
 
     private static String convertInputStreamToString(InputStream is) throws IOException {
