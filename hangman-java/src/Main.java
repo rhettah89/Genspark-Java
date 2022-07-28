@@ -6,32 +6,27 @@ import java.util.*;
 public class Main {
     public static final int DEFAULT_BUFFER_SIZE = 8192;
 
-    public static String wordView(String guess, String randomWord ){
-        List<String> letters = new ArrayList<>();
-        String word = "";
-            for(int i = 0; i < randomWord.length(); i++){
-                letters.add("_");
-                }
-        if(randomWord.contains(guess)){
-            letters.set(randomWord.indexOf(guess), guess);
-        }
-        for(String letter : letters){
-            word = (word + letter);
-        }
-        System.out.println(word);
-        return word;
-    }
+    public static String wordView(String guess, String randomWord, String wordd ){
+        StringBuilder word = new StringBuilder(wordd);
 
-    public static String missedLetters(String randomWord, String guess){
-        List<String> letters = new ArrayList<>();
-        String missed = "";
-        if(!randomWord.contains(guess)){
-            letters.add(guess);
+
+
+        for(int i = 0; i < randomWord.length(); i++){
+            if(String.valueOf(word.charAt(i)) == guess){
+                word.setCharAt(i, guess.toCharArray()[0]);
+            }
+
         }
-        for(String letter : letters){
-            missed = (missed + letter);
-        }
-        return letters.toString().replace("[", "").replace("]", "");
+
+
+//        if(randomWord.contains(guess)){
+//            letters.set(randomWord.indexOf(guess), guess);
+//        }
+//        for(Object letter : letters){
+//            word = (word + letter);
+//        }
+        System.out.println(word);
+        return word.toString();
     }
 
     public static void main(String[] args) throws Exception {
@@ -40,8 +35,11 @@ public class Main {
         String guess = "d";
         String space = "";
         String board = "";
-        String word = wordView(guess, randomWord);
-        System.out.println(word);
+        List<String> letters = new ArrayList<>();
+        List<String> guesses = new ArrayList<>();
+        List<String> missedletters = new ArrayList<>();
+        List<String> word_line = new ArrayList<>();
+        String word_line_string = word_line.toString().replace("[", "").replace("]", "").replace(",", "") .replace(" ", "");
 
         URI uri = URI.create("https://random-word-api.herokuapp.com/word");
         try (InputStream inputStream = uri.toURL().openStream()) {
@@ -51,16 +49,61 @@ public class Main {
             System.out.println( result.replace("\"", "").replace("[", "").replace("]", ""));
         }
 
-
-        for(int i = 0; i < randomWord.length(); i++ ){
+        for(int i = 0; i < randomWord.length(); i++){
+            word_line.add("_");
             space = space + " ";
             board = board + "=";
         }
+        for(char ch: randomWord.toCharArray()){
+            letters.add(String.valueOf(ch));
+        }
+
         // Game Start
-        System.out.println("\n\nWELCOME TO HANGMAN\n" + "+" + wordView(guess,randomWord) + "+");
-        System.out.println(space+ "|\n"  + space+ "|\n"  +  space+ "|\n" + " " + board+"\n\nMissed letters: " + missedLetters(randomWord, guess) + "\n\nGuess a letter");
-        guess = input.nextLine();
-    }
+
+        while(!word_line.toString().replace("[", "").replace("]", "").replace(",", "") .replace(" ", "").equals(randomWord) ){
+            System.out.println("\n\nWELCOME TO HANGMAN\n" + "+" + word_line.toString().replace("[", "").replace("]", "").replace(",", "") .replace(" ", "")+ "+");
+            System.out.println(space+ "|\n"  + space+ "|\n"  +  space+ "|\n" + " " + board+"\n\nMissed letters: " + missedletters.toString().replace("[", "").replace("]", "") + "\n\nGuess a letter");
+            guess = input.nextLine();
+
+
+
+            if(letters.contains(guess)){
+                for(int i = 0; i < letters.size(); i++){
+                    if(letters.get(i).equals(guess)){
+                        word_line.set(i, guess);
+                    }
+                }
+
+                for(String letter: word_line){
+                    word_line_string = word_line_string + letter;
+                }
+            } else{missedletters.add(guess);}
+
+
+
+
+//            if(randomWord.contains(guess)){
+//
+//                for(int i = 0; i < randomWord.length(); i++){
+////                    if(String.valueOf(randomWord.charAt(i)) == guess){
+////                        word_line.setCharAt(i, guess.toCharArray()[0]);
+////                    }
+//
+//                }
+//            }else{
+//                missedletters.add(guess);
+//
+//            }
+
+
+
+
+
+
+            }
+        }
+
+
 
     private static String convertInputStreamToString(InputStream is) throws IOException {
 
