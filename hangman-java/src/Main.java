@@ -9,35 +9,41 @@ public class Main {
     public static String wordView(String guess, String randomWord, String wordd ){
         StringBuilder word = new StringBuilder(wordd);
 
-
-
         for(int i = 0; i < randomWord.length(); i++){
             if(String.valueOf(word.charAt(i)) == guess){
                 word.setCharAt(i, guess.toCharArray()[0]);
             }
-
         }
-
-
-//        if(randomWord.contains(guess)){
-//            letters.set(randomWord.indexOf(guess), guess);
-//        }
-//        for(Object letter : letters){
-//            word = (word + letter);
-//        }
         System.out.println(word);
         return word.toString();
     }
 
+//    public String hangman_parts( int missedletters){
+//
+//        if(missedletters == )
+//
+//
+//
+//        }
+//    }
+
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
         String randomWord = "";
-        String guess = "d";
-        String space = "";
+        String guess = "";
+        String space1 = "";
+        String space2 = "";
+        String space3 = "";
+
         String board = "";
         List<String> letters = new ArrayList<>();
         List<String> guesses = new ArrayList<>();
         List<String> missedletters = new ArrayList<>();
+//        List<String> person = new ArrayList<>();
+        List<String> hangman = new ArrayList<>();
+
+        String[] person = {"O", "|", "/", "\\", "*", "/", "\\" };
+
         List<String> word_line = new ArrayList<>();
         String word_line_string = word_line.toString().replace("[", "").replace("]", "").replace(",", "") .replace(" ", "");
 
@@ -51,21 +57,29 @@ public class Main {
 
         for(int i = 0; i < randomWord.length(); i++){
             word_line.add("_");
-            space = space + " ";
+            space1 = space1 + " ";
+            space2 = space2 + " ";
+            space3 = space3 + " ";
+
             board = board + "=";
         }
+
+
+
         for(char ch: randomWord.toCharArray()){
             letters.add(String.valueOf(ch));
         }
 
+
+
         // Game Start
 
+        System.out.println("\n\nWELCOME TO HANGMAN\n");
+
         while(!word_line.toString().replace("[", "").replace("]", "").replace(",", "") .replace(" ", "").equals(randomWord) ){
-            System.out.println("\n\nWELCOME TO HANGMAN\n" + "+" + word_line.toString().replace("[", "").replace("]", "").replace(",", "") .replace(" ", "")+ "+");
-            System.out.println(space+ "|\n"  + space+ "|\n"  +  space+ "|\n" + " " + board+"\n\nMissed letters: " + missedletters.toString().replace("[", "").replace("]", "") + "\n\nGuess a letter");
+            System.out.println("+" + word_line.toString().replace("[", "").replace("]", "").replace(",", "") .replace(" ", "")+ "+");
+            System.out.println( " " + person[0] + space1 + "|\n" + person[2] + person[1] + person[3] +  space2 + "|\n" + person[5] + person[4] +  person[6] +  space3 + "|\n"  + " " + board +"\n\nMissed letters: " + missedletters.toString().replace("[", "").replace("]", "") + "\n\nGuess a letter");
             guess = input.nextLine();
-
-
 
             if(letters.contains(guess)){
                 for(int i = 0; i < letters.size(); i++){
@@ -78,32 +92,8 @@ public class Main {
                     word_line_string = word_line_string + letter;
                 }
             } else{missedletters.add(guess);}
-
-
-
-
-//            if(randomWord.contains(guess)){
-//
-//                for(int i = 0; i < randomWord.length(); i++){
-////                    if(String.valueOf(randomWord.charAt(i)) == guess){
-////                        word_line.setCharAt(i, guess.toCharArray()[0]);
-////                    }
-//
-//                }
-//            }else{
-//                missedletters.add(guess);
-//
-//            }
-
-
-
-
-
-
             }
         }
-
-
 
     private static String convertInputStreamToString(InputStream is) throws IOException {
 
